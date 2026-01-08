@@ -3,9 +3,9 @@ output "proxmox_nodes" {
 }
 
 output "k8s_node_ips" {
-  description = "IP addresses of the created Kubernetes nodes"
+  description = "Real IP addresses of the created Kubernetes nodes"
   value = {
     for vm in proxmox_virtual_environment_vm.k8s_nodes :
-    vm.name => vm.initialization[0].ip_config[0].ipv4[0].address
+    vm.name => flatten(vm.ipv4_addresses)[1]
   }
 }

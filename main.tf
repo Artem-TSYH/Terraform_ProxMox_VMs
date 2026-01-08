@@ -36,6 +36,7 @@ resource "proxmox_virtual_environment_vm" "k8s_nodes" {
 
   initialization {
     datastore_id = "local-zfs"
+    interface = "ide2"
 
     ip_config {
       ipv4 {
