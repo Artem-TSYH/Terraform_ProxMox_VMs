@@ -1,0 +1,16 @@
+.terraform/
+
+*.tfstate
+*.tfstate.backup
+*.tfstate.lock.info
+
+*.tfvars
+*.tfvars.json
+
+*.log
+
+Thumbs.db
+desktop.ini
+
+.vscode/
+.history/
