@@ -1,5 +1,22 @@
+
+![IaC](https://img.shields.io/badge/IaC-OpenTofu-FF69B4?style=flat-square&logo=opentofu) 
+
+![Proxmox](https://img.shields.io/badge/Proxmox-E57024?style=for-the-badge&logo=proxmox&logoColor=white)
+![Ubuntu](https://img.shields.io/badge/Ubuntu-E94333?style=for-the-badge&logo=ubuntu&logoColor=white)
+
+       ┌───────────┐        ┌─────────────┐        ┌─────────────────┐
+       │ OpenTofu  │ ────▶ │ Proxmox API  │ ────▶ │ Ubuntu Template │
+       └───────────┘        └─────────────┘        └────────┬────────┘
+                                                            │
+                                           ┌────────────────┼────────────────┐
+                                           │                │                │
+                                   ┌───────▼──────┐  ┌──────▼───────┐  ┌─────▼───────┐
+                                   │  Node 1 (M)  │  │  Node 2 (W)  │  │  Node 3 (W) │
+                                   └──────────────┘  └──────────────┘  └─────────────┘
+
+
 ## # Preparing VM for Terraform Automation (Proxmox + Ubuntu) ##
-#### # Proxmox VE 8.4.14, Base OS: Ubuntu 24.04.3 LTS (Noble), Terraform v.1.14.3, provider: bpg ####
+#### # Proxmox VE 8.4.14, Base OS: Ubuntu 24.04.3 LTS (Noble), OpenTofu v.1.11.2, provider: bpg ####
 ### # 1. Install & Enable Agent ###
 ##### # Agent is required for Proxmox to see VM IP and for Terraform to finish 'apply' ####
 ##### # Documentation: https://pve.proxmox.com/wiki/Qemu-guest-agent ####
