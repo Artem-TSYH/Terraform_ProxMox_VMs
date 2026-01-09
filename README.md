@@ -1,3 +1,18 @@
+
+![Terraform](https://img.shields.io/badge/terraform-%235835CC.svg?style=for-the-badge&logo=terraform&logoColor=white)
+![Proxmox](https://img.shields.io/badge/Proxmox-E57024?style=for-the-badge&logo=proxmox&logoColor=white)
+![Ubuntu](https://img.shields.io/badge/Ubuntu-E94333?style=for-the-badge&logo=ubuntu&logoColor=white)
+
+       ┌───────────┐        ┌─────────────┐        ┌─────────────────┐
+       │ Terraform │ ────▶ │ Proxmox API  │ ────▶ │ Ubuntu Template │
+       └───────────┘        └─────────────┘        └────────┬────────┘
+                                                            │
+                                           ┌────────────────┼────────────────┐
+                                           │                │                │
+                                   ┌───────▼──────┐  ┌──────▼───────┐  ┌─────▼───────┐
+                                   │  Node 1 (M)  │  │  Node 2 (W)  │  │  Node 3 (W) │
+                                   └──────────────┘  └──────────────┘  └─────────────┘
+
 ## # Preparing VM for Terraform Automation (Proxmox + Ubuntu) ##
 #### # Proxmox VE 8.4.14, Base OS: Ubuntu 24.04.3 LTS (Noble), Terraform v.1.14.3, provider: bpg ####
 ### # 1. Install & Enable Agent ###
