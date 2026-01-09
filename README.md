@@ -3,34 +3,35 @@
 ### # 1. Install & Enable Agent ###
 ##### # Agent is required for Proxmox to see VM IP and for Terraform to finish 'apply' ####
 ##### # Documentation: https://pve.proxmox.com/wiki/Qemu-guest-agent ####
+##### # NOTE. Run all commands as root. Ensure no other users exist on the VM to keep the template clean. ####
 
-sudo apt update && sudo apt install qemu-guest-agent -y
+apt update && apt install qemu-guest-agent -y
 
-sudo systemctl start qemu-guest-agent
+systemctl start qemu-guest-agent
 
-sudo systemctl enable qemu-guest-agent
+systemctl enable qemu-guest-agent
 
-sudo systemctl status qemu-guest-agent
+systemctl status qemu-guest-agent
 
 ### # 2. Check Status ###
 ##### # IMPORTANT: If agent is 'inactive' or 'failed' ####
 
-sudo poweroff
+poweroff
 
 ##### # In Proxmox GUI: VM -> Options -> QEMU Guest Agent -> Edit and "Enabled" -> OK ####
 ##### # Power on VM ####
 
-sudo systemctl status qemu-guest-agent
+systemctl status qemu-guest-agent
 
 ### # 3. Cleanup ###
 
-sudo cloud-init clean --logs
+cloud-init clean --logs
 
-sudo rm /var/lib/dbus/machine-id
+rm -f /var/lib/dbus/machine-id
 
-sudo truncate -s 0 /etc/machine-id
+truncate -s 0 /etc/machine-id
 
-sudo poweroff
+poweroff
 
 ### # 4. Template ###
 
