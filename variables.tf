@@ -23,5 +23,5 @@ variable "vm_id_start" {
 
 variable "proxmox_template_id" {
   type      = number
-  default   = 201
+  default   = 901
 }

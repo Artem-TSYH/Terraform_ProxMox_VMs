@@ -6,10 +6,13 @@ resource "proxmox_virtual_environment_vm" "k8s_nodes" {
   name      = "k8s-node-${count.index + 1}"
   node_name = "southpark"
   vm_id     = var.vm_id_start + count.index # for IDs 301, 302, 303
+  scsi_hardware = "virtio-scsi-pci"
 
   clone {
     vm_id = var.proxmox_template_id
   }
+
+  boot_order = ["scsi0", "scsi2"]
 
   agent {
     enabled = true
@@ -36,7 +39,7 @@ resource "proxmox_virtual_environment_vm" "k8s_nodes" {
 
   initialization {
     datastore_id = "local-zfs"
-    interface = "ide2"
+    interface    = "scsi2"
 
     ip_config {
       ipv4 {
