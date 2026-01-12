@@ -63,7 +63,6 @@ resource "proxmox_virtual_environment_vm" "k8s_nodes" {
     datastore_id = "local-zfs"
     interface    = "scsi0"
     size         = 32
-    file_format  = "raw"
   }
 
   initialization {
