@@ -7,6 +7,12 @@ variable "proxmox_api_token" {
   sensitive = true
 }
 
+variable "proxmox_ssh_key_path" {
+  description = "Path to the private SSH key"
+  type        = string
+  sensitive   = true
+}
+
 variable "ssh_public_key" {
   type      = string
 }
@@ -23,5 +29,5 @@ variable "vm_id_start" {
 
 variable "proxmox_template_id" {
   type      = number
-  default   = 901
+  default   = 9000
 }

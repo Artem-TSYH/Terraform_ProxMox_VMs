@@ -1,5 +1,32 @@
 data "proxmox_virtual_environment_nodes" "available_nodes" {}
 
+resource "proxmox_virtual_environment_file" "cloudinit" {
+  content_type = "snippets"
+  datastore_id = "local"
+  node_name    = "southpark"
+
+  source_raw {
+    data = <<-EOF
+    #cloud-config
+    users:
+      - name: ansible
+        groups: sudo
+        shell: /bin/bash
+        sudo: 'ALL=(ALL) NOPASSWD:ALL'
+        ssh_authorized_keys:
+          - ${var.ssh_public_key}
+    packages:
+      - qemu-guest-agent
+
+    runcmd:
+      - systemctl enable qemu-guest-agent
+      - systemctl start qemu-guest-agent
+    EOF
+
+    file_name = "cloudinit.yaml"
+  }
+}
+
 # VMs for Kubernetes-Cluster
 resource "proxmox_virtual_environment_vm" "k8s_nodes" {
   count     = var.vm_count
@@ -10,6 +37,7 @@ resource "proxmox_virtual_environment_vm" "k8s_nodes" {
 
   clone {
     vm_id = var.proxmox_template_id
+    full = true
   }
 
   boot_order = ["scsi0", "scsi2"]
@@ -20,6 +48,7 @@ resource "proxmox_virtual_environment_vm" "k8s_nodes" {
 
   cpu {
     cores = 2
+    type  = "host"
   }
 
   memory {
@@ -51,5 +80,6 @@ resource "proxmox_virtual_environment_vm" "k8s_nodes" {
       username = "ansible"
       keys     =  [var.ssh_public_key]
     }
+    user_data_file_id = proxmox_virtual_environment_file.cloudinit.id
   }
 }
