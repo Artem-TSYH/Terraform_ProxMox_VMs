@@ -3,7 +3,7 @@ data "proxmox_virtual_environment_nodes" "available_nodes" {}
 resource "proxmox_virtual_environment_file" "cloudinit" {
   content_type = "snippets"
   datastore_id = "local"
-  node_name    = "southpark"
+  node_name    = var.node_name
 
   source_raw {
     data = <<-EOF
@@ -32,7 +32,7 @@ resource "proxmox_virtual_environment_file" "cloudinit" {
 resource "proxmox_virtual_environment_vm" "k8s_nodes" {
   count     = var.vm_count
   name      = "k8s-node-${count.index + 1}"
-  node_name = "southpark"
+  node_name = var.node_name
   vm_id     = var.vm_id_start + count.index # for IDs 301, 302, 303
   scsi_hardware = "virtio-scsi-pci"
 

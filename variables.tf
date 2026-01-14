@@ -1,3 +1,8 @@
+variable "node_name" {
+  description = "Proxmox node where resources will be created"
+  type        = string
+}
+
 variable "proxmox_endpoint" {
   type      = string
 }
