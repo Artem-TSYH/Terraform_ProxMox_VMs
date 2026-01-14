@@ -74,11 +74,6 @@ resource "proxmox_virtual_environment_vm" "k8s_nodes" {
         address = "dhcp"
       }
     }
-    # Account for Ansible
-    user_account {
-      username = "ansible"
-      keys     =  [var.ssh_public_key]
-    }
     user_data_file_id = proxmox_virtual_environment_file.cloudinit.id
   }
 }
