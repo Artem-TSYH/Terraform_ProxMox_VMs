@@ -13,6 +13,7 @@ resource "proxmox_virtual_environment_file" "cloudinit" {
         groups: sudo
         shell: /bin/bash
         sudo: 'ALL=(ALL) NOPASSWD:ALL'
+        lock_passwd: true
         ssh_authorized_keys:
           - ${var.ssh_public_key}
     packages:
