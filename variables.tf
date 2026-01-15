@@ -36,3 +36,15 @@ variable "proxmox_template_id" {
   type      = number
   default   = 9000
 }
+
+variable "vm_resources" {
+  description = "Resources: cpu, memory"
+  type = object({
+    cores  = number
+    memory = number
+  })
+  default = {
+    cores  = 2
+    memory = 4096
+  }
+}

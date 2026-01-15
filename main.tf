@@ -48,12 +48,12 @@ resource "proxmox_virtual_environment_vm" "k8s_nodes" {
   }
 
   cpu {
-    cores = 2
+    cores = var.vm_resources.cores
     type  = "host"
   }
 
   memory {
-    dedicated = 4096
+    dedicated = var.vm_resources.memory
   }
 
   network_device {
